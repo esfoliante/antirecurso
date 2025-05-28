@@ -5,7 +5,7 @@ const Changelog: React.FC = () => {
   return (
     <section className="w-full text-sm md:text-md px-5 md:px-24 md:pb-24 pb-48 mt-5">
       {/* <ChangelogVersion
-        title="v1.4.2 🛠"
+        title="v1.4.3 🛠"
         date={new Date(2024, .., ..)}
         updates={[
           <span className="align-middle" key="1.4.2-maintenance">
@@ -13,6 +13,16 @@ const Changelog: React.FC = () => {
           </span>
         ]}
       /> */}
+      <ChangelogVersion
+        title="v1.4.2 🪲"
+        date={new Date(2025, 5, 28)}
+        updates={[
+          <span className="align-middle" key="1.4.2-maintenance">
+            Corrigido o problema onde alguns utilizadores não conseguiam realizar exames nem fazer
+            login.
+          </span>
+        ]}
+      />
       <ChangelogVersion
         title="v1.4.1 📂"
         date={new Date(2024, 1, 18)}
