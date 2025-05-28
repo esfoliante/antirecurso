@@ -3,18 +3,18 @@
 import useSession from '@/hooks/useSession';
 import { BASE_URL } from '@/services/api';
 import { Eye, EyeSplash } from '@/styles/Icons';
+import Score from '@/types/Score';
 import Link from 'next/link';
 import React from 'react';
-import User from 'src/types/User';
 import swal from 'sweetalert';
 
 interface UsePreviousExamsTableProps {
-  user: User;
+  userScores: Score;
 }
 
-const UserProfileScoreboard: React.FC<UsePreviousExamsTableProps> = ({ user }) => {
+const UserProfileScoreboard: React.FC<UsePreviousExamsTableProps> = ({ userScores }) => {
   const { token } = useSession();
-  const [scores, setScores] = React.useState(user.scores);
+  const [scores, setScores] = React.useState(userScores);
 
   async function handleVisibilityChange(subjectId: number, show_scoreboard: boolean) {
     swal({

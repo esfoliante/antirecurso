@@ -2,6 +2,7 @@ import { BASE_URL } from 'src/services/api';
 import Subject from 'src/types/Subject';
 
 const fetchSubjectsWithQuestions = async (): Promise<Subject[]> => {
+  console.log(BASE_URL);
   const res = await fetch(`${BASE_URL}/subjects?with_questions=true`);
   if (!res.ok) throw new Error('Error fetching subjects');
 

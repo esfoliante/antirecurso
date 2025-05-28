@@ -2,7 +2,7 @@ import PreviousExamsTable from '@/components/exams/PreviousExamsTable';
 import UserProfileScoreboard from '@/components/profile/UserProfileScoreboard';
 import UserAvatar from '@/components/scoreboard/UserAvatar';
 import PrimaryButton from '@/components/utils/PrimaryButton';
-import getServerSession from '@/services/getServerSession';
+import { getServerSession, getUserScores } from '@/services/getServerSession';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -17,6 +17,9 @@ const Profile: React.FC<ProfileProps> = async () => {
   if (!session) redirect('/');
 
   const { token, user } = session;
+
+  const userScores = await getUserScores();
+  if (!userScores) redirect('/');
 
   const today = new Date().toLocaleDateString('pt-PT');
 
@@ -35,13 +38,13 @@ const Profile: React.FC<ProfileProps> = async () => {
         Hoje é dia {today}. Tens algum exame perto?
       </p>
 
-      {user.scores.length ? (
+      {userScores.length ? (
         <>
           <p className="mt-16 text-lg font-bold text-center uppercase md:text-xl">
             O teu <span className="text-primary">score</span> ao longo das disciplinas
           </p>
 
-          <UserProfileScoreboard user={user} />
+          <UserProfileScoreboard userScores={userScores} />
 
           <p className="mt-10 text-lg font-bold uppercase md:text-xl">
             Os teus <span className="text-primary">exames</span>

@@ -5,9 +5,10 @@ import { BASE_URL } from '@/services/api';
 import { Session } from '@/types/Session';
 import User from '@/types/User';
 
-const getServerSession = async (): Promise<Session | null> => {
-  const cookie = cookies().get(config.cookies.token);
-  const token = cookie?.value as string;
+const cookie = cookies().get(config.cookies.token);
+const token = cookie?.value as string;
+
+export async function getServerSession(): Promise<Session | null> {
   if (!token) return null;
 
   const res = await fetch(`${BASE_URL}/user`, {
@@ -21,6 +22,20 @@ const getServerSession = async (): Promise<Session | null> => {
 
   if (res.status !== 200) return null;
   return { token, user: (await res.json()) as User };
-};
+}
 
-export default getServerSession;
+export async function getUserScores() {
+  if (!token) return null;
+
+  const res = await fetch(`${BASE_URL}/user/scores`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    cache: 'no-store'
+  });
+
+  if (res.status !== 200) return null;
+  return await res.json();
+}
