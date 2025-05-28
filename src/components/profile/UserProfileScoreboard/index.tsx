@@ -9,7 +9,7 @@ import React from 'react';
 import swal from 'sweetalert';
 
 interface UsePreviousExamsTableProps {
-  userScores: Score;
+  userScores: Score[];
 }
 
 const UserProfileScoreboard: React.FC<UsePreviousExamsTableProps> = ({ userScores }) => {

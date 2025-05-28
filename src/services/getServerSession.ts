@@ -5,10 +5,9 @@ import { BASE_URL } from '@/services/api';
 import { Session } from '@/types/Session';
 import User from '@/types/User';
 
-const cookie = cookies().get(config.cookies.token);
-const token = cookie?.value as string;
-
 export async function getServerSession(): Promise<Session | null> {
+  const cookie = cookies().get(config.cookies.token);
+  const token = cookie?.value as string;
   if (!token) return null;
 
   const res = await fetch(`${BASE_URL}/user`, {
@@ -25,6 +24,8 @@ export async function getServerSession(): Promise<Session | null> {
 }
 
 export async function getUserScores() {
+  const cookie = cookies().get(config.cookies.token);
+  const token = cookie?.value as string;
   if (!token) return null;
 
   const res = await fetch(`${BASE_URL}/user/scores`, {
