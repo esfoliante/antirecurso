@@ -1,7 +1,7 @@
 import BarChart from '@/components/charts/BarChart';
 import UserAvatar from '@/components/scoreboard/UserAvatar';
 import { BASE_URL } from '@/services/api';
-import getServerSession from '@/services/getServerSession';
+import { getServerSession } from '@/services/getServerSession';
 import { AdminExamsStats } from '@/types/AdminExamsStats';
 import { redirect } from 'next/navigation';
 import swal from 'sweetalert';
